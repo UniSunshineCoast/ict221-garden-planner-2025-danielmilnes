@@ -6,12 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -32,17 +27,18 @@ public class GuiMain extends Application {
 
         // Set up scene
         primaryStage.setTitle("Garden");                    // Stage title
-        Pane pane = new HBox();                             // Create pane
+        Pane pane = new Pane();                             // Create pane
         pane.setStyle("-fx-background-color: #007700;");    // Set colour
 
         // Loop through garden beds
         for (RectBed bed: planner.getBeds()) {
             // Add rectangle representing garden bed to pane
-            pane.getChildren().add(
-                    new Rectangle(bed.getWidth()*100, bed.getHeight()*100)
-            );
-            // Add padding
-            pane.getChildren().add(new Rectangle(50, 0));
+            Rectangle rect = new Rectangle();       // Create rectangle
+            rect.setWidth(bed.getWidth()*100);      // Set width
+            rect.setHeight(bed.getHeight()*100);    // Set height
+            rect.setX(bed.getLeft()*100);           // Set X
+            rect.setY(bed.getTop()*100);            // Set Y
+            pane.getChildren().add(rect);           // Add to pane
         }
 
         primaryStage.setScene(new Scene(pane, 800, 600));   // Add pane to scene
