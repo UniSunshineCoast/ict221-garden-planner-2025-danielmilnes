@@ -42,7 +42,7 @@ public class GuiMain extends Application {
                     new Rectangle(bed.getWidth()*100, bed.getHeight()*100)
             );
             // Add padding
-            pane.getChildren().add(new Rectangle(50, 1)); // i got 99 problems but a syntax error aint one
+            pane.getChildren().add(new Rectangle(50, 0));
         }
 
         primaryStage.setScene(new Scene(pane, 800, 600));   // Add pane to scene
