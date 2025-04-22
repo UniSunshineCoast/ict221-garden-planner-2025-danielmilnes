@@ -1,0 +1,53 @@
+package garden_planner.model;
+
+public class CircleBed extends GardenBed {
+    private double width = 1.0;
+
+    public CircleBed() {}
+
+    /**
+     * Total width of this circle.
+     *
+     * @return width in metres.
+     */
+    @Override
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    /**
+     * Total height of this circle.
+     *
+     * @return height in metres.
+     */
+    @Override
+    public double getHeight() {
+        return getWidth();
+    }
+
+    /**
+     * Get the area of this circle.
+     *
+     * @return the total internal area of the circle.
+     */
+    @Override
+    public double getArea() {
+        double r = width / 2;
+        return (Math.PI * r * r);
+    }
+
+    @Override
+    public double getPerimeter() {
+        double r = width / 2;
+        return (Math.PI * r * 2);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Circle %.2f %.2f %.2f", left, top, width);
+    }
+}

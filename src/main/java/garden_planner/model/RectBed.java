@@ -5,46 +5,17 @@ package garden_planner.model;
  *
  * @author Mark Utting
  */
-public class RectBed {
-	private double left = 0.0;
-	private double top = 0.0;
+public class RectBed extends GardenBed {
 	private double width = 1.0;
 	private double height = 1.0;
 
-	public RectBed() {
-	}
-
+	public RectBed() {}
 	/**
-	 * Position of left edge of this shape.
-	 *
-	 * @return left edge, in metres
-	 */
-	public double getLeft() {
-		return left;
-	}
-
-	public void setLeft(double left) {
-		this.left = left;
-	}
-
-	/**
-	 * Position of top edge of this shape.
-	 *
-	 * @return top edge, in metres
-	 */
-	public double getTop() {
-		return top;
-	}
-
-	public void setTop(double top) {
-		this.top = top;
-	}
-
-	/**
-	 * Total width of this shape.
+	 * Total width of this rectangle.
 	 *
 	 * @return width in metres.
 	 */
+	@Override
 	public double getWidth() {
 		return width;
 	}
@@ -54,10 +25,11 @@ public class RectBed {
 	}
 
 	/**
-	 * Total height of this shape.
+	 * Total height of this rectangle.
 	 *
 	 * @return height in metres.
 	 */
+	@Override
 	public double getHeight() {
 		return height;
 	}
@@ -67,19 +39,21 @@ public class RectBed {
 	}
 
 	/**
-	 * Get the area of this shape.
+	 * Get the area of this rectangle.
 	 *
-	 * @return the total internal area of the shape.
+	 * @return the total internal area of the rectangle.
 	 */
+	@Override
 	public double getArea() {
 		return width * height;
 	}
 
 	/**
-	 * Get the perimeter of this shape.
+	 * Get the perimeter of this rectangle.
 	 *
-	 * @return the total length of the edges of the shape.
+	 * @return the total length of the edges of the rectangle.
 	 */
+	@Override
 	public double getPerimeter() {
 		return 2 * (width + height);
 	}

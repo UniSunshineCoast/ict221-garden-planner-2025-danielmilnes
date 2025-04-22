@@ -1,10 +1,8 @@
 package garden_planner.gui;
 
+import garden_planner.model.GardenBed;
 import garden_planner.model.GardenPlanner;
-import garden_planner.model.RectBed;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -31,7 +29,7 @@ public class GuiMain extends Application {
         pane.setStyle("-fx-background-color: #007700;");    // Set colour
 
         // Loop through garden beds
-        for (RectBed bed: planner.getBeds()) {
+        for (GardenBed bed: planner.getBeds()) {
             // Add rectangle representing garden bed to pane
             Rectangle rect = new Rectangle();       // Create rectangle
             rect.setWidth(bed.getWidth()*100);      // Set width

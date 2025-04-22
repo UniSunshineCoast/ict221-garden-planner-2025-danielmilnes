@@ -21,7 +21,7 @@ public class GardenPlanner {
     private double wallPrice;
 
     /** The collection of all the garden beds in the current design. */
-    private final ArrayList<RectBed> beds = new ArrayList<>();
+    private final ArrayList<GardenBed> beds = new ArrayList<>();
     private double totalWallLength;
     private double totalGardenArea;
 
@@ -83,7 +83,7 @@ public class GardenPlanner {
      *
      * @return a list of garden beds.
      */
-    public List<RectBed> getBeds() {
+    public List<GardenBed> getBeds() {
         return this.beds;
     }
 
@@ -159,6 +159,12 @@ public class GardenPlanner {
                 rect.setWidth(Double.parseDouble(words[3]));
                 rect.setHeight(Double.parseDouble(words[4]));
                 getBeds().add(rect);
+            } else if (words.length == 5 && words[0].toLowerCase().equals("circle")) {
+                CircleBed circ = new CircleBed();
+                circ.setLeft(Double.parseDouble(words[1]));
+                circ.setTop(Double.parseDouble(words[2]));
+                circ.setWidth(Double.parseDouble(words[3]));
+                getBeds().add(circ);
             } else {
                 throw new IllegalArgumentException("ERROR: illegal garden bed: " + line);
             }
@@ -173,7 +179,7 @@ public class GardenPlanner {
     public void recalculateTotals() {
         totalWallLength = 0.0;
         totalGardenArea = 0.0;
-        for (RectBed bed : this.beds) {
+        for (GardenBed bed : this.beds) {
             totalGardenArea += bed.getArea();
             totalWallLength += bed.getPerimeter();
         }
