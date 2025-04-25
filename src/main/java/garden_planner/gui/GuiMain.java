@@ -11,6 +11,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.List;
+import java.util.Scanner;
+
 
 /**
  * NOTE: Do NOT run this class in IntelliJ.  Run 'RunGui' instead.
@@ -23,8 +27,22 @@ public class GuiMain extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));
 
         // Set up garden
-        GardenPlanner planner = new GardenPlanner();
-        planner.createBasicDesign();
+        List<String> args = getParameters().getRaw();   // Get args
+        GardenPlanner planner = new GardenPlanner();    // Create planner object
+        // This bit is copied from TextUI.java
+        // First 2 args are soil and wall price
+        if (args.size() >= 2) {
+            planner.setSoilPrice(Double.parseDouble(args.get(0)));
+            planner.setWallPrice(Double.parseDouble(args.get(1)));
+        }
+        // 3rd arg is the file to read
+        if (args.size() == 3) {
+            planner.readBeds(new Scanner(new File(args.get(2))));
+        }
+        // If no 3rd arg, use basic design
+        else {
+            planner.createBasicDesign();
+        }
 
         // Set up scene
         primaryStage.setTitle("Garden");                        // Stage title
@@ -35,7 +53,7 @@ public class GuiMain extends Application {
         rootPane.setCenter(bedsPane);                           // Put beds pane in root pane
         rootPane.setBottom(textPane);                           // Put text pane in root pane
 
-        // Loop through garden beds
+        // Loop through garden beds and add them to panes
         int counter = 0;
         for (GardenBed bed: planner.getBeds()) {
             counter++;
@@ -50,8 +68,10 @@ public class GuiMain extends Application {
             // Add bed info
             Text bedInfoText = new Text();              // Create text node
             bedInfoText.setText(                        // Set bed info
-                    "Bed " + counter + "\t" + bed.getShapeType() + "\t\tWidth: " + bed.getWidth() + "m\tHeight: " +
-                    bed.getHeight() + "m\tArea: " + bed.getArea() + "m^2\tPerimeter: " + bed.getPerimeter() + "m");
+                "Bed " + counter + "\t" + bed.getShapeType() + "\t\tWidth: " + String.format("%.2f", bed.getWidth())
+                + "m\t\tHeight: " + String.format("%.2f", bed.getHeight()) + "m\t\tArea: "
+                + String.format("%.2f", bed.getArea()) + "m^2\t\tPerimeter: "
+                + String.format("%.2f", bed.getPerimeter()) + "m");
             textPane.getChildren().add(bedInfoText);    // Add to textPane
         }
 
