@@ -26,6 +26,7 @@ public class CircleBedTest {
         assertEquals(5.5, cBed.getWidth());
         assertEquals(1.0, cBed.getTop());
         assertEquals(3.5, cBed.getLeft());
+        assertEquals("Circle", cBed.getShapeType());
     }
 
     @Test

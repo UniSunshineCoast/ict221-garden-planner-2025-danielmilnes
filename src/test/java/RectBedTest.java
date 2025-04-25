@@ -29,6 +29,7 @@ public class RectBedTest {
         assertEquals(5.5, rBed.getWidth());
         assertEquals(1.0, rBed.getTop());
         assertEquals(3.5, rBed.getLeft());
+        assertEquals("Rectangle", rBed.getShapeType());
     }
 
     @Test
