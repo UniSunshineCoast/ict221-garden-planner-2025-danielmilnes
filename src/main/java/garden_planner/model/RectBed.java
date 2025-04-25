@@ -1,13 +1,14 @@
 package garden_planner.model;
 
 /**
- * Represents a rectangular shape garden.
+ * Represents a rectangular shapeType garden.
  *
  * @author Mark Utting
  */
 public class RectBed extends GardenBed {
     private double width = 1.0;
     private double height = 1.0;
+    private String shapeType = "Rectangle";
 
     public RectBed() {}
     /**
@@ -61,6 +62,11 @@ public class RectBed extends GardenBed {
     @Override
     public String toString() {
         return String.format("Rectangle %.2f %.2f %.2f %.2f", left, top, width, height);
+    }
+
+    @Override
+    public String getShapeType() {
+        return shapeType;
     }
 }
 

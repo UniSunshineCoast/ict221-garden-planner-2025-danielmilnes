@@ -1,7 +1,13 @@
 package garden_planner.model;
 
+/**
+ * Represents a rectangular shape garden.
+ *
+ * @author Daniel Milnes
+ */
 public class CircleBed extends GardenBed {
     private double width = 1.0;
+    private String shapeType = "Circle";
 
     public CircleBed() {}
 
@@ -49,5 +55,10 @@ public class CircleBed extends GardenBed {
     @Override
     public String toString() {
         return String.format("Circle %.2f %.2f %.2f", left, top, width);
+    }
+
+    @Override
+    public String getShapeType() {
+        return shapeType;
     }
 }

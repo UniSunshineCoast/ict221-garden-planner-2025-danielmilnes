@@ -1,5 +1,10 @@
 package garden_planner.model;
 
+/**
+ * Represents a garden.
+ *
+ * @author Daniel Milnes
+ */
 public abstract class GardenBed {
     protected double left = 0.0;
     protected double top = 0.0;
@@ -37,4 +42,6 @@ public abstract class GardenBed {
     public abstract double getArea();
 
     public abstract double getPerimeter();
+
+    public abstract String getShapeType();
 }

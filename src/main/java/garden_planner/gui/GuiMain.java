@@ -48,11 +48,11 @@ public class GuiMain extends Application {
             bedsPane.getChildren().add(rect);       // Add to bedsPane
 
             // Add bed info
-            Text bedInfoText = new Text();            // Create text node
-            bedInfoText.setText(
-                    "Bed " + counter + "\tWidth: " + bed.getWidth() + "m\tHeight: " + bed.getHeight() +
-                    "m\tArea: " + bed.getArea() + "m^2\tPerimeter: " + bed.getPerimeter() + "m");
-            textPane.getChildren().add(bedInfoText);
+            Text bedInfoText = new Text();              // Create text node
+            bedInfoText.setText(                        // Set bed info
+                    "Bed " + counter + "\t" + bed.getShapeType() + "\t\tWidth: " + bed.getWidth() + "m\tHeight: " +
+                    bed.getHeight() + "m\tArea: " + bed.getArea() + "m^2\tPerimeter: " + bed.getPerimeter() + "m");
+            textPane.getChildren().add(bedInfoText);    // Add to textPane
         }
 
         primaryStage.setScene(new Scene(rootPane, 800, 600));   // Add root pane to scene
