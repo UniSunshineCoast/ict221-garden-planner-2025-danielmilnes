@@ -4,6 +4,7 @@ import garden_planner.model.GardenBed;
 import garden_planner.model.GardenPlanner;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -57,13 +58,23 @@ public class GuiMain extends Application {
         int counter = 0;
         for (GardenBed bed: planner.getBeds()) {
             counter++;
-            // Add rectangle representing garden bed to bedsPane
-            Rectangle rect = new Rectangle();       // Create rectangle
-            rect.setWidth(bed.getWidth()*100);      // Set width
-            rect.setHeight(bed.getHeight()*100);    // Set height
-            rect.setX(bed.getLeft()*100);           // Set X
-            rect.setY(bed.getTop()*100);            // Set Y
-            bedsPane.getChildren().add(rect);       // Add to bedsPane
+            if (bed.getShapeType() == "Rectangle") {
+                // Add rectangle representing garden bed to bedsPane
+                Rectangle rect = new Rectangle();       // Create rectangle
+                rect.setWidth(bed.getWidth() * 100);    // Set width
+                rect.setHeight(bed.getHeight() * 100);  // Set height
+                rect.setX(bed.getLeft() * 100);         // Set X
+                rect.setY(bed.getTop() * 100);          // Set Y
+                bedsPane.getChildren().add(rect);       // Add to bedsPane
+            }
+            if (bed.getShapeType() == "Circle") {
+                // Add circle representing garden bed to bedsPane
+                Circle circ = new Circle();            // Create circle
+                circ.setRadius(bed.getWidth() * 50);   // Set radis (50 instead of 100 because radius = half width)
+                circ.setCenterX(bed.getLeft() * 100 + bed.getWidth() * 50);  // Set X
+                circ.setCenterY(bed.getTop() * 100 + bed.getWidth() * 50);   // Set y
+                bedsPane.getChildren().add(circ);
+            }
 
             // Add bed info
             Text bedInfoText = new Text();              // Create text node
