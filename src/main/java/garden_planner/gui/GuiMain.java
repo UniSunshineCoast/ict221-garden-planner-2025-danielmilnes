@@ -46,11 +46,11 @@ public class GuiMain extends Application {
 
         // Set up scene
         primaryStage.setTitle("Garden");                        // Stage title
-        Pane bedsPane = new Pane();                             // Create beds pane
-        bedsPane.setStyle("-fx-background-color: #007700;");    // Set colour
-        VBox textPane = new VBox();                             // Create text pane
         BorderPane rootPane = new BorderPane();                 // Create root pane
+        Pane bedsPane = new Pane();                             // Create beds pane
+        bedsPane.setStyle("-fx-background-color: #007700;");    // Set beds pane colour
         rootPane.setCenter(bedsPane);                           // Put beds pane in root pane
+        VBox textPane = new VBox();                             // Create text pane
         rootPane.setBottom(textPane);                           // Put text pane in root pane
 
         // Loop through garden beds and add them to panes
@@ -79,8 +79,8 @@ public class GuiMain extends Application {
             Text bedInfoText = new Text();              // Create text node
             bedInfoText.setText(                        // Set bed info
                 "Bed " + counter + "\t" + bed.getShapeType() + "\t\t"
-                + "Top: " + String.format("%.2f", bed.getTop()) + "m\t\t"
                 + "Left: " + String.format("%.2f", bed.getLeft()) + "m\t\t"
+                + "Top: " + String.format("%.2f", bed.getTop()) + "m\t\t"
                 + "Width: " + String.format("%.2f", bed.getWidth()) + "m\t\t"
                 + "Height: " + String.format("%.2f", bed.getHeight()) + "m\t\t"
                 + "Area: " + String.format("%.2f", bed.getArea()) + "m^2\t\t"
