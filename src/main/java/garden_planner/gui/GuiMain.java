@@ -3,6 +3,7 @@ package garden_planner.gui;
 import garden_planner.model.GardenBed;
 import garden_planner.model.GardenPlanner;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -45,13 +46,9 @@ public class GuiMain extends Application {
         }
 
         // Set up scene
-        primaryStage.setTitle("Garden");                        // Stage title
-        BorderPane rootPane = new BorderPane();                 // Create root pane
-        Pane bedsPane = new Pane();                             // Create beds pane
-        bedsPane.setStyle("-fx-background-color: #007700;");    // Set beds pane colour
-        rootPane.setCenter(bedsPane);                           // Put beds pane in root pane
-        VBox textPane = new VBox();                             // Create text pane
-        rootPane.setBottom(textPane);                           // Put text pane in root pane
+        primaryStage.setTitle("Garden");    // Stage title
+        BorderPane rootPane = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));   // Load rootPane
+        Pane bedsPane = (Pane) rootPane.getCenter();    // Create ref to bedsPane
 
         // Loop through garden beds and add them to panes
         int counter = 0;
@@ -74,18 +71,6 @@ public class GuiMain extends Application {
                 circ.setCenterY(bed.getTop() * 100 + bed.getWidth() * 50);   // Set y
                 bedsPane.getChildren().add(circ);
             }
-
-            // Add bed info
-            Text bedInfoText = new Text();              // Create text node
-            bedInfoText.setText(                        // Set bed info
-                "Bed " + counter + "\t" + bed.getShapeType() + "\t\t"
-                + "Left: " + String.format("%.2f", bed.getLeft()) + "m\t\t"
-                + "Top: " + String.format("%.2f", bed.getTop()) + "m\t\t"
-                + "Width: " + String.format("%.2f", bed.getWidth()) + "m\t\t"
-                + "Height: " + String.format("%.2f", bed.getHeight()) + "m\t\t"
-                + "Area: " + String.format("%.2f", bed.getArea()) + "m^2\t\t"
-                + "Perimeter: " + String.format("%.2f", bed.getPerimeter()) + "m");
-            textPane.getChildren().add(bedInfoText);    // Add to textPane
         }
 
         primaryStage.setScene(new Scene(rootPane, 800, 600));   // Add root pane to scene

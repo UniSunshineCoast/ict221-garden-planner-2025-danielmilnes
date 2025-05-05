@@ -1,6 +1,34 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<BorderPane fx:controller="garden_planner.gui.Controller"
-            xmlns:fx="http://javafx.com/fxml">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="garden_planner.gui.Controller">
+   <center>
+      <Pane fx:id="bedsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #007700;" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <GridPane fx:id="menuPane" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="width" text="Width" />
+            <Label fx:id="height" text="Height" GridPane.rowIndex="1" />
+            <Label fx:id="area" text="Area" GridPane.rowIndex="2" />
+            <Label fx:id="perimeter" text="Perimeter" GridPane.rowIndex="3" />
+            <TextField fx:id="width_input" promptText="Width" GridPane.columnIndex="1" />
+            <TextField fx:id="height_input" promptText="Height" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="area_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="perimeter_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </left>
 </BorderPane>
