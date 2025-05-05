@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;
@@ -79,10 +78,13 @@ public class GuiMain extends Application {
             // Add bed info
             Text bedInfoText = new Text();              // Create text node
             bedInfoText.setText(                        // Set bed info
-                "Bed " + counter + "\t" + bed.getShapeType() + "\t\tWidth: " + String.format("%.2f", bed.getWidth())
-                + "m\t\tHeight: " + String.format("%.2f", bed.getHeight()) + "m\t\tArea: "
-                + String.format("%.2f", bed.getArea()) + "m^2\t\tPerimeter: "
-                + String.format("%.2f", bed.getPerimeter()) + "m");
+                "Bed " + counter + "\t" + bed.getShapeType() + "\t\t"
+                + "Top: " + String.format("%.2f", bed.getTop()) + "m\t\t"
+                + "Left: " + String.format("%.2f", bed.getLeft()) + "m\t\t"
+                + "Width: " + String.format("%.2f", bed.getWidth()) + "m\t\t"
+                + "Height: " + String.format("%.2f", bed.getHeight()) + "m\t\t"
+                + "Area: " + String.format("%.2f", bed.getArea()) + "m^2\t\t"
+                + "Perimeter: " + String.format("%.2f", bed.getPerimeter()) + "m");
             textPane.getChildren().add(bedInfoText);    // Add to textPane
         }
 
