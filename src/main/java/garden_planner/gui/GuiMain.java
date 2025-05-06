@@ -5,6 +5,7 @@ import garden_planner.model.GardenPlanner;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.layout.BorderPane;
@@ -24,8 +25,7 @@ public class GuiMain extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        // Parent root = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));
+    public void start(Stage primaryStage) throws Exception {
 
         // Set up garden
         List<String> args = getParameters().getRaw();   // Get args
@@ -45,11 +45,13 @@ public class GuiMain extends Application {
             planner.createBasicDesign();
         }
 
-        // Set up scene
+        // SET UP SCENE
         primaryStage.setTitle("Garden");    // Stage title
         BorderPane rootPane = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));   // Load rootPane
-        Pane bedsPane = (Pane) rootPane.getCenter();    // Create ref to bedsPane
+        Pane bedsPane = (Pane) rootPane.getCenter();        // Create ref to bedsPane
+        GridPane menuPane = (GridPane) rootPane.getLeft();  // Create ref to menuPane
 
+        // ADD GARDEN BEDS
         // Loop through garden beds and add them to panes
         int counter = 0;
         for (GardenBed bed: planner.getBeds()) {
@@ -73,6 +75,7 @@ public class GuiMain extends Application {
             }
         }
 
+        // DISPLAY SCENE
         primaryStage.setScene(new Scene(rootPane, 800, 600));   // Add root pane to scene
         primaryStage.show();    // Show scene
     }
