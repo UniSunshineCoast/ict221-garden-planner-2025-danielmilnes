@@ -21,6 +21,7 @@ public class CircleBed extends GardenBed {
         return width;
     }
 
+    @Override
     public void setWidth(double width) {
         this.width = width;
     }
@@ -33,6 +34,11 @@ public class CircleBed extends GardenBed {
     @Override
     public double getHeight() {
         return getWidth();
+    }
+
+    @Override
+    public void setHeight(double height) {
+        this.width = height;
     }
 
     /**

@@ -21,6 +21,7 @@ public class RectBed extends GardenBed {
         return width;
     }
 
+    @Override
     public void setWidth(double width) {
         this.width = width;
     }

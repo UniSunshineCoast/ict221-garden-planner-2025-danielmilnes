@@ -37,7 +37,11 @@ public abstract class GardenBed {
 
     public abstract double getWidth();
 
+    public abstract void setWidth(double width);
+
     public abstract double getHeight();
+
+    public abstract void setHeight(double height);
 
     public abstract double getArea();
 
