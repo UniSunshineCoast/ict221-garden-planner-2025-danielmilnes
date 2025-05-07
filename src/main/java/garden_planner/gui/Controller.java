@@ -18,6 +18,8 @@ public class Controller {
     @FXML
     private BorderPane rootPane;
     @FXML
+    private Label shapeType_display;
+    @FXML
     private TextField left_input;
     @FXML
     private TextField top_input;
@@ -38,28 +40,32 @@ public class Controller {
 
         // PLACEHOLDER: edit first bed
         GardenBed selectedBed = planner.getBeds().getFirst();
-        updateLabels(selectedBed);
+        updateLabelsAndTextFields(selectedBed);
 
         // BIND EVENT HANDLERS
         left_input.textProperty().addListener(e -> {
             double leftValue = Double.parseDouble(left_input.getText());
             selectedBed.setLeft(leftValue);
             updateGUI();
+            updateLabels(selectedBed);
         });
         top_input.textProperty().addListener(e -> {
             double topValue = Double.parseDouble(top_input.getText());
             selectedBed.setTop(topValue);
             updateGUI();
+            updateLabels(selectedBed);
         });
         width_input.textProperty().addListener(e -> {
             double widthValue = Double.parseDouble(width_input.getText());
             selectedBed.setWidth(widthValue);
             updateGUI();
+            updateLabels(selectedBed);
         });
         height_input.textProperty().addListener(e -> {
             double heightValue = Double.parseDouble(height_input.getText());
             selectedBed.setHeight(heightValue);
             updateGUI();
+            updateLabels(selectedBed);
         });
 
     }
@@ -94,11 +100,18 @@ public class Controller {
      * Updates the labels in the GUI to have the info of the selected garden bed.
      * @param bed The selected garden bed
      */
-    public void updateLabels(GardenBed bed) {
+    public void updateLabelsAndTextFields(GardenBed bed) {
+        shapeType_display.setText(bed.getShapeType());
         left_input.setText(String.valueOf(bed.getLeft()));
         top_input.setText(String.valueOf(bed.getTop()));
         width_input.setText(String.valueOf(bed.getWidth()));
         height_input.setText(String.valueOf(bed.getHeight()));
+        area_display.setText(String.valueOf(bed.getArea()));
+        perimeter_display.setText(String.valueOf(bed.getPerimeter()));
+    }
+
+    public void updateLabels(GardenBed bed) {
+        shapeType_display.setText(bed.getShapeType());
         area_display.setText(String.valueOf(bed.getArea()));
         perimeter_display.setText(String.valueOf(bed.getPerimeter()));
     }
