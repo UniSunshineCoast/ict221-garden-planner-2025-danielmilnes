@@ -26,7 +26,9 @@ public class GuiMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        BorderPane rootPane = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));   // Load rootPane
 
+        /* CODE TO SET UP GARDEN WITHOUT CONTROLLER.JAVA
         // Set up garden
         List<String> args = getParameters().getRaw();   // Get args
         GardenPlanner planner = new GardenPlanner();    // Create planner object
@@ -44,18 +46,20 @@ public class GuiMain extends Application {
         else {
             planner.createBasicDesign();
         }
+        */
 
-        // SET UP SCENE
+
+        /* CODE TO SET UP SCENE WITHOUT CONTROLLER.JAVA
         primaryStage.setTitle("Garden");    // Stage title
         BorderPane rootPane = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));   // Load rootPane
         Pane bedsPane = (Pane) rootPane.getCenter();        // Create ref to bedsPane
         GridPane menuPane = (GridPane) rootPane.getLeft();  // Create ref to menuPane
+        */
 
-        // ADD GARDEN BEDS
+
+        /* CODE TO ADD BEDS WITHOUT CONTROLLER.JAVA
         // Loop through garden beds and add them to panes
-        int counter = 0;
         for (GardenBed bed: planner.getBeds()) {
-            counter++;
             if (bed.getShapeType() == "Rectangle") {
                 // Add rectangle representing garden bed to bedsPane
                 Rectangle rect = new Rectangle();       // Create rectangle
@@ -74,9 +78,11 @@ public class GuiMain extends Application {
                 bedsPane.getChildren().add(circ);
             }
         }
+        */
+
 
         // DISPLAY SCENE
-        primaryStage.setScene(new Scene(rootPane, 800, 600));   // Add root pane to scene
+        primaryStage.setScene(new Scene(rootPane, 1000, 600));   // Add root pane to scene
         primaryStage.show();    // Show scene
     }
 

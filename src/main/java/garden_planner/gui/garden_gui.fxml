@@ -18,16 +18,25 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="width" text="Width" />
-            <Label fx:id="height" text="Height" GridPane.rowIndex="1" />
-            <Label fx:id="area" text="Area" GridPane.rowIndex="2" />
-            <Label fx:id="perimeter" text="Perimeter" GridPane.rowIndex="3" />
-            <TextField fx:id="width_input" promptText="Width" GridPane.columnIndex="1" />
-            <TextField fx:id="height_input" promptText="Height" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="area_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="perimeter_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="width_label" text="Width" GridPane.rowIndex="3" />
+            <Label fx:id="height_label" text="Height" GridPane.rowIndex="4" />
+            <Label fx:id="area_label" text="Area" GridPane.rowIndex="5" />
+            <Label fx:id="perimeter_label" text="Perimeter" GridPane.rowIndex="6" />
+            <TextField fx:id="width_input" promptText="Width" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="height_input" promptText="Height" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="area_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="perimeter_display" text="default" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="top_label" text="Top" GridPane.rowIndex="2" />
+            <Label fx:id="left_label" text="Left" GridPane.rowIndex="1" />
+            <Label fx:id="shapeType_label" text="Shape" />
+            <Label fx:id="shapeType_display" text="default" GridPane.columnIndex="1" />
+            <TextField fx:id="left_input" promptText="Left" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="top_input" promptText="Top" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </left>
