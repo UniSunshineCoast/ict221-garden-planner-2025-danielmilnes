@@ -40,4 +40,13 @@
          </children>
       </GridPane>
    </left>
+   <bottom>
+      <VBox fx:id="infoPane" prefHeight="80.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="total_area_display" text="Total area:" />
+            <Label fx:id="total_perimeter_display" text="Total wall length:" />
+            <Label fx:id="total_soil_display" text="Total soil:" />
+            <Label fx:id="total_cost_display" text="Total cost:" />
+         </children></VBox>
+   </bottom>
 </BorderPane>

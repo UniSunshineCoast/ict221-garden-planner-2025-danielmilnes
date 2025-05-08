@@ -31,6 +31,14 @@ public class Controller {
     private Label area_display;
     @FXML
     private Label perimeter_display;
+    @FXML
+    private Label total_area_display;
+    @FXML
+    private Label total_perimeter_display;
+    @FXML
+    private Label total_soil_display;
+    @FXML
+    private Label total_cost_display;
 
     @FXML
     public void initialize() {
@@ -97,22 +105,32 @@ public class Controller {
     }
 
     /**
-     * Updates the labels in the GUI to have the info of the selected garden bed.
+     * Updates the text fields and labels in the GUI to have the info of the selected garden bed.
+     * Use when a bed is selected.
      * @param bed The selected garden bed
      */
     public void updateLabelsAndTextFields(GardenBed bed) {
-        shapeType_display.setText(bed.getShapeType());
         left_input.setText(String.valueOf(bed.getLeft()));
         top_input.setText(String.valueOf(bed.getTop()));
         width_input.setText(String.valueOf(bed.getWidth()));
         height_input.setText(String.valueOf(bed.getHeight()));
-        area_display.setText(String.valueOf(bed.getArea()));
-        perimeter_display.setText(String.valueOf(bed.getPerimeter()));
+        updateLabels(bed);
     }
 
+    /**
+     * Updates the labels in the GUI to have the info of the selected garden bed.
+     * Use when a bed is edited.
+     * @param bed The selected garden bed
+     */
     public void updateLabels(GardenBed bed) {
+        planner.recalculateTotals();
         shapeType_display.setText(bed.getShapeType());
         area_display.setText(String.valueOf(bed.getArea()));
         perimeter_display.setText(String.valueOf(bed.getPerimeter()));
+        total_area_display.setText(String.format("Total garden area: %.2fm^2", planner.getTotalGardenArea()));
+        total_perimeter_display.setText(String.format("Total wall length: %.2fm", planner.getTotalWallLength()));
+        total_soil_display.setText(String.format(
+                "Total soil required: %.2fm^3", planner.getTotalGardenArea() * planner.SOIL_DEPTH));
+        total_cost_display.setText(String.format("Total garden cost: $%.2f", planner.getTotalCost()));
     }
 }
