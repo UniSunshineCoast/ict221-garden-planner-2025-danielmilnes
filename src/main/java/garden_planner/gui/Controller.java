@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
 public class Controller {
@@ -100,12 +101,22 @@ public class Controller {
             }
             if (bed.getShapeType().equals("Circle")) {
                 // Add circle representing garden bed to bedsPane
-                Circle circ = new Circle();            // Create circle
-                circ.setRadius(bed.getWidth() * 50);   // Set radis (50 instead of 100 because radius = half width)
+                Circle circ = new Circle();             // Create circle
+                circ.setRadius(bed.getWidth() * 50);    // Set radis (50 instead of 100 because radius = half width)
                 circ.setCenterX(bed.getLeft() * 100 + bed.getWidth() * 50);  // Set X
                 circ.setCenterY(bed.getTop() * 100 + bed.getWidth() * 50);   // Set y
                 circ.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
                 bedsPane.getChildren().add(circ);       // Add to bedsPane
+            }
+            if (bed.getShapeType().equals("Triangle")) {// Add triangle representing garden bed to bedsPane
+                Polygon tri = new Polygon();            // Create polygon
+                tri.getPoints().addAll(new Double[] {   // Set corners
+                        bed.getLeft()*100,                      bed.getTop()*100,
+                        bed.getLeft()*100,                      bed.getTop()*100 + bed.getHeight()*100,
+                        bed.getLeft()*100 + bed.getWidth()*100, bed.getTop()*100 + bed.getHeight()*100,
+                });
+                tri.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
+                bedsPane.getChildren().add(tri);        // Add to bedsPane
             }
         }
     }

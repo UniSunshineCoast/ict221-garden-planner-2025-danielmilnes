@@ -51,27 +51,27 @@ public class GardenPlanner {
         // use our default layout: two rectangles with a larger circle in the middle
         RectBed r1 = new RectBed();
         CircleBed c2 = new CircleBed();
-        RectBed r3 = new RectBed();
+        TriangleBed t3 = new TriangleBed();
 
         r1.setWidth(1.0);
         c2.setWidth(2.0);
-        r3.setWidth(1.0);
+        t3.setWidth(1.0);
 
         r1.setHeight(2.0);
         c2.setHeight(2.0);
-        r3.setHeight(2.0);
+        t3.setHeight(2.0);
 
         r1.setLeft(1.0);
         c2.setLeft(3.0);
-        r3.setLeft(6.0);
+        t3.setLeft(6.0);
 
         r1.setTop(1.0);
         c2.setTop(1.0);
-        r3.setTop(1.0);
+        t3.setTop(1.0);
 
         beds.add(r1);
         beds.add(c2);
-        beds.add(r3);
+        beds.add(t3);
     }
 
     /**

@@ -1,8 +1,7 @@
 package garden_planner.model;
 
 /**
- * Represents a rectangular shape garden.
- *
+ * Represents a circular garden.
  * @author Daniel Milnes
  */
 public class CircleBed extends GardenBed {
@@ -13,7 +12,6 @@ public class CircleBed extends GardenBed {
 
     /**
      * Total width of this circle.
-     *
      * @return width in metres.
      */
     @Override
@@ -28,7 +26,6 @@ public class CircleBed extends GardenBed {
 
     /**
      * Total height of this circle.
-     *
      * @return height in metres.
      */
     @Override
@@ -43,8 +40,7 @@ public class CircleBed extends GardenBed {
 
     /**
      * Get the area of this circle.
-     *
-     * @return the total internal area of the circle.
+     * @return the area of the circle in square metres
      */
     @Override
     public double getArea() {
@@ -52,6 +48,10 @@ public class CircleBed extends GardenBed {
         return (Math.PI * r * r);
     }
 
+    /**
+     * Get the perimeter/circumference of this circle.
+     * @return the circumference of the circle in metres
+     */
     @Override
     public double getPerimeter() {
         double r = width / 2;

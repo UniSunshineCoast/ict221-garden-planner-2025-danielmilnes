@@ -1,8 +1,7 @@
 package garden_planner.model;
 
 /**
- * Represents a rectangular shapeType garden.
- *
+ * Represents a rectangular garden.
  * @author Mark Utting
  */
 public class RectBed extends GardenBed {
@@ -11,10 +10,10 @@ public class RectBed extends GardenBed {
     private String shapeType = "Rectangle";
 
     public RectBed() {}
+
     /**
      * Total width of this rectangle.
-     *
-     * @return width in metres.
+     * @return width in metres
      */
     @Override
     public double getWidth() {
@@ -28,22 +27,21 @@ public class RectBed extends GardenBed {
 
     /**
      * Total height of this rectangle.
-     *
-     * @return height in metres.
+     * @return height in metres
      */
     @Override
     public double getHeight() {
         return height;
     }
 
+    @Override
     public void setHeight(double height) {
         this.height = height;
     }
 
     /**
      * Get the area of this rectangle.
-     *
-     * @return the total internal area of the rectangle.
+     * @return the area of the rectangle in square metres
      */
     @Override
     public double getArea() {
@@ -52,8 +50,7 @@ public class RectBed extends GardenBed {
 
     /**
      * Get the perimeter of this rectangle.
-     *
-     * @return the total length of the edges of the rectangle.
+     * @return the perimetre of the rectangle in metres
      */
     @Override
     public double getPerimeter() {
@@ -70,4 +67,3 @@ public class RectBed extends GardenBed {
         return shapeType;
     }
 }
-
