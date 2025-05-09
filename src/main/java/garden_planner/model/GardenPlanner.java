@@ -165,6 +165,13 @@ public class GardenPlanner {
                 circ.setTop(Double.parseDouble(words[2]));
                 circ.setWidth(Double.parseDouble(words[3]));
                 getBeds().add(circ);
+            } else if (words.length == 5 && words[0].toLowerCase().equals("triangle")) {
+                TriangleBed tri = new TriangleBed();
+                tri.setLeft(Double.parseDouble(words[1]));
+                tri.setTop(Double.parseDouble(words[2]));
+                tri.setWidth(Double.parseDouble(words[3]));
+                tri.setHeight(Double.parseDouble(words[4]));
+                getBeds().add(tri);
             } else {
                 throw new IllegalArgumentException("ERROR: illegal garden bed: " + line);
             }

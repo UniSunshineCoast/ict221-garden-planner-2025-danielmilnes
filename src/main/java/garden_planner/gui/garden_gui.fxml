@@ -41,12 +41,23 @@
       </GridPane>
    </left>
    <bottom>
-      <VBox fx:id="infoPane" prefHeight="80.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="total_area_display" text="Total area:" />
-            <Label fx:id="total_perimeter_display" text="Total wall length:" />
-            <Label fx:id="total_soil_display" text="Total soil:" />
-            <Label fx:id="total_cost_display" text="Total cost:" />
-         </children></VBox>
+            <VBox fx:id="infoPane" prefHeight="80.0" prefWidth="160.0">
+               <children>
+                  <Label fx:id="total_area_display" text="Total area:" />
+                  <Label fx:id="total_perimeter_display" text="Total wall length:" />
+                  <Label fx:id="total_soil_display" text="Total soil:" />
+                  <Label fx:id="total_cost_display" text="Total cost:" />
+               </children>
+            </VBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="451.0">
+               <children>
+                  <Label fx:id="addRect_button" text="Add rectangle " />
+                  <Label fx:id="addCircle_button" text="Add circle " />
+                  <Label fx:id="addTriangle_button" text="Add triangle" />
+               </children></HBox>
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>

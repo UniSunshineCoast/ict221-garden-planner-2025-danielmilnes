@@ -1,7 +1,6 @@
 package garden_planner.gui;
 
-import garden_planner.model.GardenBed;
-import garden_planner.model.GardenPlanner;
+import garden_planner.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,42 +14,29 @@ public class Controller {
     GardenPlanner planner = new GardenPlanner();
     GardenBed selectedBed;
 
-    @FXML
-    private Pane bedsPane;
-    @FXML
-    private BorderPane rootPane;
-    @FXML
-    private Label shapeType_display;
-    @FXML
-    private TextField left_input;
-    @FXML
-    private TextField top_input;
-    @FXML
-    private TextField width_input;
-    @FXML
-    private TextField height_input;
-    @FXML
-    private Label area_display;
-    @FXML
-    private Label perimeter_display;
-    @FXML
-    private Label total_area_display;
-    @FXML
-    private Label total_perimeter_display;
-    @FXML
-    private Label total_soil_display;
-    @FXML
-    private Label total_cost_display;
+    @FXML private Pane bedsPane;
+    @FXML private BorderPane rootPane;
+    @FXML private Label shapeType_display;
+    @FXML private TextField left_input;
+    @FXML private TextField top_input;
+    @FXML private TextField width_input;
+    @FXML private TextField height_input;
+    @FXML private Label area_display;
+    @FXML private Label perimeter_display;
+    @FXML private Label total_area_display;
+    @FXML private Label total_perimeter_display;
+    @FXML private Label total_soil_display;
+    @FXML private Label total_cost_display;
+    @FXML private Label addRect_button;
+    @FXML private Label addCircle_button;
+    @FXML private Label addTriangle_button;
 
     @FXML
     public void initialize() {
 
         planner.createBasicDesign();    // Set up basic design
         updateGUI();                    // Update GUI
-
-        // PLACEHOLDER: edit first bed
-        selectedBed = planner.getBeds().getFirst();
-        updateLabelsAndTextFields(selectedBed);
+        setSelectedBed(planner.getBeds().getFirst());   // Select first bed
 
         // SET STYLE
         //bedsPane.setStyle("-fx-background-color: #007700; -fx-background-image: url(\"grass.png\")");
@@ -81,6 +67,24 @@ public class Controller {
             updateLabels(selectedBed);
         });
 
+        addRect_button.setOnMouseClicked(e -> {
+            RectBed rect = new RectBed();
+            planner.getBeds().add(rect);
+            setSelectedBed(rect);
+            updateGUI();
+        });
+        addCircle_button.setOnMouseClicked(e -> {
+            CircleBed circ = new CircleBed();
+            planner.getBeds().add(circ);
+            setSelectedBed(circ);
+            updateGUI();
+        });
+        addTriangle_button.setOnMouseClicked(e -> {
+            TriangleBed tri = new TriangleBed();
+            planner.getBeds().add(tri);
+            setSelectedBed(tri);
+            updateGUI();
+        });
     }
 
     /**
