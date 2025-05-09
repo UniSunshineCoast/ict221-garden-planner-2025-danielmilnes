@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Controller {
     GardenPlanner planner = new GardenPlanner();
+    GardenBed selectedBed;
 
     @FXML
     private Pane bedsPane;
@@ -47,8 +48,11 @@ public class Controller {
         updateGUI();                    // Update GUI
 
         // PLACEHOLDER: edit first bed
-        GardenBed selectedBed = planner.getBeds().getFirst();
+        selectedBed = planner.getBeds().getFirst();
         updateLabelsAndTextFields(selectedBed);
+
+        // SET STYLE
+        //bedsPane.setStyle("-fx-background-color: #007700; -fx-background-image: url(\"grass.png\")");
 
         // BIND EVENT HANDLERS
         left_input.textProperty().addListener(e -> {
@@ -84,22 +88,24 @@ public class Controller {
     public void updateGUI() {
         bedsPane.getChildren().clear();
         for (GardenBed bed: planner.getBeds()) {
-            if (bed.getShapeType() == "Rectangle") {
+            if (bed.getShapeType().equals("Rectangle")) {
                 // Add rectangle representing garden bed to bedsPane
                 Rectangle rect = new Rectangle();       // Create rectangle
                 rect.setWidth(bed.getWidth() * 100);    // Set width
                 rect.setHeight(bed.getHeight() * 100);  // Set height
                 rect.setX(bed.getLeft() * 100);         // Set X
                 rect.setY(bed.getTop() * 100);          // Set Y
+                rect.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
                 bedsPane.getChildren().add(rect);       // Add to bedsPane
             }
-            if (bed.getShapeType() == "Circle") {
+            if (bed.getShapeType().equals("Circle")) {
                 // Add circle representing garden bed to bedsPane
                 Circle circ = new Circle();            // Create circle
                 circ.setRadius(bed.getWidth() * 50);   // Set radis (50 instead of 100 because radius = half width)
                 circ.setCenterX(bed.getLeft() * 100 + bed.getWidth() * 50);  // Set X
                 circ.setCenterY(bed.getTop() * 100 + bed.getWidth() * 50);   // Set y
-                bedsPane.getChildren().add(circ);
+                circ.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
+                bedsPane.getChildren().add(circ);       // Add to bedsPane
             }
         }
     }
@@ -125,12 +131,21 @@ public class Controller {
     public void updateLabels(GardenBed bed) {
         planner.recalculateTotals();
         shapeType_display.setText(bed.getShapeType());
-        area_display.setText(String.valueOf(bed.getArea()));
-        perimeter_display.setText(String.valueOf(bed.getPerimeter()));
+        area_display.setText(String.format("%.2f", bed.getArea()));
+        perimeter_display.setText(String.format("%.2f", bed.getPerimeter()));
         total_area_display.setText(String.format("Total garden area: %.2fm^2", planner.getTotalGardenArea()));
         total_perimeter_display.setText(String.format("Total wall length: %.2fm", planner.getTotalWallLength()));
         total_soil_display.setText(String.format(
                 "Total soil required: %.2fm^3", planner.getTotalGardenArea() * planner.SOIL_DEPTH));
         total_cost_display.setText(String.format("Total garden cost: $%.2f", planner.getTotalCost()));
+    }
+
+    /**
+     * Sets selectedBed variable and updates GUI.
+     * @param bed The bed to be selected
+     */
+    public void setSelectedBed(GardenBed bed) {
+        selectedBed = bed;
+        updateLabelsAndTextFields(bed);
     }
 }

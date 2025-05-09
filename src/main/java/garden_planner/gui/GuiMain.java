@@ -28,6 +28,8 @@ public class GuiMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         BorderPane rootPane = FXMLLoader.load(getClass().getResource("garden_gui.fxml"));   // Load rootPane
 
+        // Code I might need later
+
         /* CODE TO SET UP GARDEN WITHOUT CONTROLLER.JAVA
         // Set up garden
         List<String> args = getParameters().getRaw();   // Get args
