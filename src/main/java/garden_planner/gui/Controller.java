@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import static java.lang.Math.floor;
 
 public class Controller {
     GardenPlanner planner = new GardenPlanner();
@@ -39,7 +40,7 @@ public class Controller {
         setSelectedBed(planner.getBeds().getFirst());   // Select first bed
 
         // SET STYLE
-        //bedsPane.setStyle("-fx-background-color: #007700; -fx-background-image: url(\"grass.png\")");
+        bedsPane.setStyle("-fx-background-color: #007700; -fx-background-image: url(\"grass4.png\")");
 
         // BIND EVENT HANDLERS
         left_input.textProperty().addListener(e -> {
@@ -100,17 +101,33 @@ public class Controller {
                 rect.setHeight(bed.getHeight() * 100);  // Set height
                 rect.setX(bed.getLeft() * 100);         // Set X
                 rect.setY(bed.getTop() * 100);          // Set Y
-                rect.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
+                rect.setOnMouseReleased(e -> {setSelectedBed(bed);}); // Set event to select bed on click
                 bedsPane.getChildren().add(rect);       // Add to bedsPane
+
+                // Click-drag event
+                rect.setOnMouseDragged(ev -> {
+                    rect.setX(floor(ev.getX() / 50) * 50);  // set shape X
+                    rect.setY(floor(ev.getY() / 50) * 50);  // set shape Y
+                    bed.setLeft(floor(ev.getX() / 100 * 2) / 2); // set gardenbed X
+                    bed.setTop(floor(ev.getY() / 100 * 2) / 2 ); // set gardenbed Y
+                });
             }
             if (bed.getShapeType().equals("Circle")) {
                 // Add circle representing garden bed to bedsPane
-                Circle circ = new Circle();             // Create circle
-                circ.setRadius(bed.getWidth() * 50);    // Set radis (50 instead of 100 because radius = half width)
-                circ.setCenterX(bed.getLeft() * 100 + bed.getWidth() * 50);  // Set X
-                circ.setCenterY(bed.getTop() * 100 + bed.getWidth() * 50);   // Set y
-                circ.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
+                Circle circ = new Circle();                                 // Create circle
+                circ.setRadius(bed.getWidth() * 50);                        // Set radius (radius = half width)
+                circ.setCenterX(bed.getLeft() * 100 + bed.getWidth() * 50); // Set X
+                circ.setCenterY(bed.getTop() * 100 + bed.getHeight() * 50); // Set y
+                circ.setOnMouseReleased(e -> {setSelectedBed(bed);}); // Set event to select bed on click or drag
                 bedsPane.getChildren().add(circ);       // Add to bedsPane
+
+                // Click-drag event
+                circ.setOnMouseDragged(ev -> {
+                    circ.setCenterX(floor((ev.getX() + bed.getWidth()*50) / 50) * 50);  // set shape x
+                    circ.setCenterY(floor((ev.getY() + bed.getHeight()*50) / 50) * 50); // set shape y
+                    bed.setLeft(floor(ev.getX() / 100 * 2) / 2); // set gardenbed X
+                    bed.setTop(floor(ev.getY() / 100 * 2) / 2 ); // set gardenbed Y
+                });
             }
             if (bed.getShapeType().equals("Triangle")) {// Add triangle representing garden bed to bedsPane
                 Polygon tri = new Polygon();            // Create polygon
@@ -119,8 +136,26 @@ public class Controller {
                         bed.getLeft()*100,                      bed.getTop()*100 + bed.getHeight()*100,
                         bed.getLeft()*100 + bed.getWidth()*100, bed.getTop()*100 + bed.getHeight()*100,
                 });
-                tri.setOnMouseClicked(e -> {setSelectedBed(bed);}); // Set event to select bed on click
+                tri.setOnMouseReleased(e -> {setSelectedBed(bed);}); // Set event to select bed on click or drag
                 bedsPane.getChildren().add(tri);        // Add to bedsPane
+
+                // Click-drag event
+                tri.setOnMouseDragged(ev -> {
+                    tri.getPoints().clear();
+                    double x1 = ev.getX();                        // x for corner 1
+                    double x2 = ev.getX();                        // x for corner 2
+                    double x3 = ev.getX() + bed.getWidth()*100;   // x for corner 3
+                    double y1 = ev.getY();                        // y for corner 1
+                    double y2 = ev.getY() + bed.getHeight()*100;  // y for corner 2
+                    double y3 = ev.getY() + bed.getHeight()*100;  // y for corner 3
+                    tri.getPoints().addAll(new Double[] {   // set shape corners
+                            floor(x1/50)*50,    floor(y1/50)*50,
+                            floor(x2/50)*50,    floor(y2/50)*50,
+                            floor(x3/50)*50,    floor(y3/50)*50,
+                    });
+                    bed.setLeft(floor(ev.getX() / 100 * 2) / 2); // set gardenbed X
+                    bed.setTop(floor(ev.getY() / 100 * 2) / 2 ); // set gardenbed Y
+                });
             }
         }
     }
